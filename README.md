@@ -7,7 +7,7 @@ Custom HTTP headers, set by the `headers` key in `next.config.js` or utilized by
 Node version: 20.9.0
 
 1. Clone this repo
-2. Install dependencies: `npm install && npm install @fastly/next-compute-js@alpha`
+2. Install dependencies: `npm install`
 3. Run in dev mode: `npm run dev`
 4. Open [Chrome DevTools](https://developer.chrome.com/docs/devtools/open) in [Google Chrome](https://www.google.com/chrome/) and click the [Network](https://developer.chrome.com/docs/devtools/network) tab
 5. Go to http://localhost:3000
