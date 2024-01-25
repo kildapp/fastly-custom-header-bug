@@ -1,4 +1,4 @@
-# Customer HTTP headers are absent in Fastly Next.js
+# Custom HTTP headers are absent in Fastly Next.js
 
 Custom HTTP headers, set by the `headers` key in `next.config.js` or utilized by the `NextResponse` API in `middleware.ts`, are absent in Fastly.
 
