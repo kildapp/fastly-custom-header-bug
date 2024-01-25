@@ -18,4 +18,4 @@ Node version: 20.9.0
 10. Go to http://localhost:7676 and notice that the custom HTTP headers are absent
 
 ## Why this is an issue
-Without custom headers, we cannot implement HTTP security headers to protect against a range of common web application vulnerabilities.
+Without custom headers, one cannot implement HTTP security headers to protect against a range of common web application vulnerabilities.
