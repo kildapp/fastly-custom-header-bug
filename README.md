@@ -1,40 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Customer HTTP headers are absent in Fastly Next.js
 
-## Getting Started
+ Custom HTTP headers, set by the `headers` key in `next.config.js` or using `NextResponse` API in `middleware.ts`, are absent in Fastly.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to reproduce
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ Using Node version: 20.9.0
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Clone this repo
+2. Install dependencies: `npm install && npm install @fastly/next-compute-js@alpha`
+3. Generate a compute project: `npx @fastly/next-compute-js init`
+4. Run in dev mode: `npm run dev`
+5. Open [Chrome DevTools](https://developer.chrome.com/docs/devtools/open) in [Google Chrome](https://www.google.com/chrome/) and click the [Network](https://developer.chrome.com/docs/devtools/network) tab
+6. Go to http://localhost:3000
+7. Click on the **localhost** entry in the Network Log table. You will notice that the custom headers, **X-Hello-From-Middleware** and **X-Hello-From-Next-Config**, are present in the 'Response Headers' section under the 'Headers' tab.
+8. Run in production mode: `npm run build && npm run start`
+9. Custom HTTP header's are still present
+10. Run with Fastly: `npm run fastly-serve`
+11. Go to http://localhost:7676 and notice that the custom HTTP headers are absent
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Why this is an issue
+Implementing custom HTTP security headers helps protect against a range of common web application vulnerabilities and improves the overall security posture of a website or web application. It is an essential aspect of a defense-in-depth strategy for web security.
