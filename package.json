@@ -9,7 +9,8 @@
     "lint": "next lint",
     "fastly-build": "npx @fastly/next-compute-js build",
     "fastly-serve": "npm run fastly-build && cd next-compute-js && fastly compute serve --verbose",
-    "fastly-deploy": "npm run fastly-build && cd next-compute-js && fastly compute publish --verbose"
+    "fastly-deploy": "npm run fastly-build && cd next-compute-js && fastly compute publish --verbose",
+    "postinstall": "cd next-compute-js && npm i"
   },
   "dependencies": {
     "@fastly/next-compute-js": "^2.0.0-alpha.11",
